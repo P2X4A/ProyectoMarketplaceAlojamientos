@@ -1,0 +1,111 @@
+.contenedor-mis-reservas {
+  max-width: 1040px;
+  padding-top: 92px;
+  padding-bottom: 120px;
+}
+
+.titulo-mis-reservas {
+  margin: 0 0 40px 12px;
+}
+
+.tarjeta-reserva {
+  display: grid;
+  grid-template-columns: 26% 1fr auto;
+  align-items: center;
+  background-color: var(--color-gris-fondo);
+  border-radius: 12px;
+  min-height: 168px;
+  padding: 24px 66px 24px 0;
+  margin-bottom: 44px;
+}
+
+.columna-icono {
+  text-align: center;
+  font-size: 84px;
+  color: #000000;
+}
+
+.nombre-reserva {
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--color-azul);
+  margin: 0 0 2px 0;
+}
+
+.datos-reserva {
+  font-size: 18px;
+  color: var(--color-gris-texto);
+  margin: 0;
+}
+
+.columna-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.total-reserva {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-azul);
+}
+
+.estado-reserva {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--color-verde);
+}
+
+.estado-vacio {
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  text-align: center;
+  padding: 56px 24px 64px 24px;
+}
+
+.estado-vacio h2 {
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--color-azul);
+  margin-bottom: 36px;
+}
+
+.estado-vacio p {
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.boton-vacio {
+  font-size: 18px;
+  padding: 6px 36px;
+}
+
+@media (max-width: 767px) {
+  .contenedor-mis-reservas {
+    padding-top: 40px;
+  }
+
+  .tarjeta-reserva {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 14px;
+    padding: 28px 20px;
+  }
+
+  .columna-icono {
+    font-size: 56px;
+  }
+
+  .nombre-reserva {
+    font-size: 22px;
+  }
+
+  .datos-reserva {
+    font-size: 16px;
+  }
+
+  .estado-vacio h2 {
+    font-size: 26px;
+  }
+}

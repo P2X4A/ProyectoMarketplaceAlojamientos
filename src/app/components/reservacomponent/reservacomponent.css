@@ -1,0 +1,130 @@
+.contenedor-reserva {
+  padding-top: 52px;
+}
+
+.titulo-reserva {
+  margin: 44px 0 28px 0;
+}
+
+.formulario-reserva {
+  padding: 0 8px;
+}
+
+.grupo-campo {
+  margin-top: 30px;
+}
+
+.etiqueta-campo {
+  display: block;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-azul);
+  margin-bottom: 10px;
+}
+
+.campo {
+  max-width: 420px;
+  font-size: 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+}
+
+.campo:focus {
+  border-color: var(--color-azul-claro);
+  box-shadow: 0 0 0 0.15rem rgba(32, 78, 100, 0.2);
+}
+
+.boton-confirmar {
+  font-size: 18px;
+  width: 250px;
+  max-width: 100%;
+  padding: 6px 0;
+  margin-top: 36px;
+}
+
+.tarjeta-resumen {
+  background-color: var(--color-gris-fondo);
+  border-radius: 24px;
+  padding: 36px 64px 36px 64px;
+  margin-top: -20px;
+}
+
+.titulo-resumen {
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--color-azul);
+  margin: 0 0 22px 0;
+}
+
+.filas-resumen {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 20px;
+}
+
+.fila-resumen {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 60px;
+}
+
+.linea-resumen {
+  border: 0;
+  border-top: 1px solid var(--color-azul-claro);
+  opacity: 1;
+  margin: 22px -20px 14px -20px;
+}
+
+.fila-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-rojo);
+  padding: 0 70px 0 8px;
+}
+
+.estado-vacio {
+  background-color: var(--color-gris-fondo);
+  border-radius: 12px;
+  text-align: center;
+  padding: 56px 24px;
+}
+
+.estado-vacio h2 {
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--color-azul);
+  margin-bottom: 20px;
+}
+
+.estado-vacio p {
+  font-size: 18px;
+  margin-bottom: 28px;
+}
+
+.boton-vacio {
+  font-size: 18px;
+  padding: 6px 36px;
+}
+
+@media (max-width: 576px) {
+  .tarjeta-resumen {
+    margin-top: 0;
+    padding: 28px 20px;
+  }
+
+  .filas-resumen {
+    font-size: 17px;
+  }
+
+  .fila-resumen,
+  .fila-total {
+    padding-right: 0;
+  }
+
+  .estado-vacio h2 {
+    font-size: 26px;
+  }
+}

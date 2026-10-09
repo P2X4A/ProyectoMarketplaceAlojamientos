@@ -1,0 +1,28 @@
+<div class="contenedor-pagina contenedor-mis-reservas">
+  <h1 class="titulo-pagina titulo-mis-reservas">Mis Reservas</h1>
+
+  @for (reserva of listar(); track reserva.id) {
+    <article class="tarjeta-reserva animate__animated animate__fadeInUp">
+      <div class="columna-icono">
+        <i [class]="alojamientosService.iconoPorTipo(reserva.alojamiento.tipo)"></i>
+      </div>
+      <div class="columna-info">
+        <h2 class="nombre-reserva">{{ reserva.alojamiento.nombre }}</h2>
+        <p class="datos-reserva">
+          {{ reserva.alojamiento.ciudad }} &bull; {{ rangoFechas(reserva) }} &bull; {{ reserva.huespedes }}
+          {{ reserva.huespedes === 1 ? 'huésped' : 'huéspedes' }}
+        </p>
+      </div>
+      <div class="columna-total">
+        <span class="total-reserva">${{ reserva.total | number: '1.0-0' }}</span>
+        <span class="estado-reserva">{{ reserva.estado | uppercase }}</span>
+      </div>
+    </article>
+  } @empty {
+    <div class="estado-vacio animate__animated animate__fadeIn">
+      <h2>Todavía no tienes reservas</h2>
+      <p>Cuando confirmes una reserva, aparecerá aquí con su estado.</p>
+      <a routerLink="/alojamientos" class="btn boton-naranja boton-vacio">Explorar alojamientos</a>
+    </div>
+  }
+</div>

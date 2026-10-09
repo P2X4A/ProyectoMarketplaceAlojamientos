@@ -1,0 +1,70 @@
+<div class="contenedor-pagina contenedor-reserva">
+  @if (cotizacion(); as c) {
+    <a [routerLink]="['/cotizacion', c.alojamientoId]" class="enlace-volver">
+      <i class="fa-solid fa-caret-left"></i>Volver a la cotización
+    </a>
+
+    <h1 class="titulo-pagina titulo-reserva">Completa tu reserva</h1>
+
+    <div class="row g-4 g-lg-5 animate__animated animate__fadeIn">
+      <div class="col-lg-5">
+        <form class="formulario-reserva" (ngSubmit)="confirmarReserva()">
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campoNombre">Nombre del huésped</label>
+            <input type="text" id="campoNombre" name="campoNombre" class="form-control campo"
+                   placeholder="Nombre completo" [(ngModel)]="nombreHuesped">
+            @if (errorNombre()) {
+              <p class="texto-error"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ errorNombre() }}</p>
+            }
+          </div>
+
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campoCorreo">Correo electrónico</label>
+            <input type="email" id="campoCorreo" name="campoCorreo" class="form-control campo"
+                   placeholder="correo@ejemplo.com" [(ngModel)]="correo">
+            @if (errorCorreo()) {
+              <p class="texto-error"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ errorCorreo() }}</p>
+            }
+          </div>
+
+          <button type="submit" class="btn boton-naranja boton-confirmar">Confirmar reserva</button>
+          <p class="texto-error">Podrá revisar su reserva en la ventana de "Mis Reservas"</p>
+        </form>
+      </div>
+
+      <div class="col-lg-7">
+        <aside class="tarjeta-resumen">
+          <h2 class="titulo-resumen">Resumen</h2>
+          <div class="filas-resumen">
+            <span>{{ c.nombreAlojamiento }}</span>
+            <span>{{ c.ciudad }}</span>
+            <div class="fila-resumen">
+              <span>Llegada</span>
+              <span>{{ fecha(c.fechaLlegada) | date: 'd MMM. y' }}</span>
+            </div>
+            <div class="fila-resumen">
+              <span>Salida</span>
+              <span>{{ fecha(c.fechaSalida) | date: 'd MMM. y' }}</span>
+            </div>
+            <div class="fila-resumen">
+              <span>Huéspedes</span>
+              <span>{{ c.huespedes }}</span>
+            </div>
+          </div>
+          <hr class="linea-resumen">
+          <div class="fila-total">
+            <span>TOTAL</span>
+            <span>${{ c.total | number: '1.0-0' }}</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  } @else {
+    <h1 class="titulo-pagina titulo-reserva">Completa tu reserva</h1>
+    <div class="estado-vacio animate__animated animate__headShake">
+      <h2>Aún no tienes una cotización</h2>
+      <p>Para reservar primero debes elegir un alojamiento y generar una cotización válida.</p>
+      <a routerLink="/alojamientos" class="btn boton-naranja boton-vacio">Explorar alojamientos</a>
+    </div>
+  }
+</div>
