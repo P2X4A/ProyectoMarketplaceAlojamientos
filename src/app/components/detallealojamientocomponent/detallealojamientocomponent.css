@@ -1,0 +1,214 @@
+.contenedor-detalle {
+  padding-top: 36px;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  height: 390px;
+}
+
+.imagen-galeria {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  min-height: 0;
+}
+
+.imagen-principal {
+  grid-row: 1 / 3;
+}
+
+.galeria-dos .imagen-galeria:not(.imagen-principal) {
+  grid-row: 1 / 3;
+}
+
+.galeria-una {
+  grid-template-columns: 1fr;
+}
+
+.titulo-detalle {
+  font-weight: 500;
+  font-size: 36px;
+  color: var(--color-azul);
+  margin: 22px 0 14px 0;
+}
+
+.subtitulo-detalle {
+  font-size: 18px;
+  color: var(--color-gris-texto);
+  margin-bottom: 22px;
+}
+
+.descripcion-detalle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.tabla-datos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--color-azul-claro);
+  border-bottom: 1px solid var(--color-azul-claro);
+  padding: 10px 0;
+  max-width: 600px;
+  text-align: center;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.etiqueta-dato {
+  font-size: 11px;
+  color: var(--color-gris-texto);
+}
+
+.valor-dato {
+  font-size: 12px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.subtitulo-seccion {
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-azul);
+  margin: 36px 0 22px 20px;
+}
+
+.lista-servicios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-left: 60px;
+}
+
+.chip-servicio {
+  background-color: var(--color-taupe);
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 8px 14px;
+}
+
+.lista-reglas {
+  padding-left: 60px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.lista-reglas li {
+  margin-bottom: 6px;
+}
+
+.tarjeta-resena {
+  background-color: var(--color-gris-fondo);
+  border-radius: 10px;
+  padding: 16px 24px;
+  max-width: 460px;
+  margin: 0 0 24px 36px;
+}
+
+.autor-resena {
+  font-size: 17px;
+  margin: 0 0 6px 0;
+}
+
+.comentario-resena {
+  font-size: 17px;
+  margin: 0;
+}
+
+.texto-vacio {
+  color: var(--color-gris-texto);
+  font-size: 15px;
+}
+
+.tarjeta-precio {
+  background-color: var(--color-gris-fondo);
+  border-radius: 20px;
+  padding: 24px 22px 20px 22px;
+  max-width: 330px;
+  margin: 22px 0 0 auto;
+}
+
+.precio-detalle {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.precio-detalle span {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.limpieza-detalle {
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.boton-cotizar {
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.ayuda-precio {
+  font-size: 13px;
+  text-align: center;
+  margin: 18px 0 0 0;
+}
+
+@media (max-width: 991px) {
+  .tarjeta-precio {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .galeria {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 120px;
+    height: auto;
+  }
+
+  .imagen-principal {
+    grid-row: 1;
+    grid-column: 1 / 3;
+  }
+
+  .galeria-dos .imagen-galeria:not(.imagen-principal) {
+    grid-row: 2;
+    grid-column: 1 / 3;
+  }
+
+  .galeria-una {
+    grid-template-rows: 240px;
+  }
+
+  .titulo-detalle {
+    font-size: 30px;
+  }
+
+  .lista-servicios,
+  .lista-reglas {
+    padding-left: 20px;
+  }
+
+  .subtitulo-seccion {
+    margin-left: 0;
+  }
+
+  .tarjeta-resena {
+    margin-left: 0;
+  }
+}

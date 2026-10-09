@@ -1,0 +1,109 @@
+<div class="contenedor-pagina animate__animated animate__fadeIn">
+  <h1 class="titulo-pagina">Alojamientos disponibles</h1>
+  <p class="texto-introduccion">
+    Acá podrás encontrar los alojamientos que se encuentran disponibles; por medio del filtro puedes buscar lo
+    que desees.
+  </p>
+
+  <form class="caja-filtros" (ngSubmit)="buscar()">
+    <div class="row g-3 align-items-end">
+      <div class="col-6 col-lg">
+        <label class="etiqueta-filtro" for="filtroCiudad">Ciudad</label>
+        <select id="filtroCiudad" name="filtroCiudad" class="form-select campo-filtro"
+                [(ngModel)]="ciudad" (ngModelChange)="cambiarFiltro()">
+          <option value="">Todas</option>
+          @for (opcion of alojamientosService.ciudades(); track opcion) {
+            <option [value]="opcion">{{ opcion }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-6 col-lg">
+        <label class="etiqueta-filtro" for="filtroHuespedes">Huéspedes</label>
+        <input type="number" id="filtroHuespedes" name="filtroHuespedes" class="form-control campo-filtro"
+               min="1" step="1" placeholder="Cantidad" [(ngModel)]="huespedes" (ngModelChange)="cambiarFiltro()">
+      </div>
+
+      <div class="col-6 col-lg">
+        <label class="etiqueta-filtro" for="filtroTipo">Tipo</label>
+        <select id="filtroTipo" name="filtroTipo" class="form-select campo-filtro"
+                [(ngModel)]="tipo" (ngModelChange)="cambiarFiltro()">
+          <option value="">Todos</option>
+          @for (opcion of alojamientosService.tipos(); track opcion) {
+            <option [value]="opcion">{{ opcion }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-6 col-lg">
+        <label class="etiqueta-filtro" for="filtroPrecio">Precio máximo</label>
+        <input type="number" id="filtroPrecio" name="filtroPrecio" class="form-control campo-filtro"
+               min="1" step="10000" placeholder="$200.000" [(ngModel)]="precioMaximo" (ngModelChange)="cambiarFiltro()">
+      </div>
+
+      <div class="col-6 col-lg-auto">
+        <button type="submit" class="btn boton-buscar w-100">Buscar</button>
+      </div>
+      <div class="col-6 col-lg-auto">
+        <button type="button" class="btn boton-limpiar w-100" (click)="limpiarFiltros()">Limpiar Filtro</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="mensajes-filtro">
+    @if (mensajeFiltro) {
+      <p class="texto-error animate__animated animate__headShake">{{ mensajeFiltro }}</p>
+    }
+    @if (errorHuespedes()) {
+      <p class="texto-error">{{ errorHuespedes() }}</p>
+    }
+    @if (errorPrecio()) {
+      <p class="texto-error">{{ errorPrecio() }}</p>
+    }
+  </div>
+
+  <div class="row rejilla-alojamientos">
+    @for (alojamiento of listar(); track alojamiento.id) {
+      <div class="col-12 col-sm-6 col-lg-4">
+        <article class="tarjeta-alojamiento animate__animated animate__fadeIn"
+                 [routerLink]="['/alojamiento', alojamiento.id]">
+          <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre" class="imagen-tarjeta">
+          <h2 class="nombre-tarjeta">{{ alojamiento.nombre }}</h2>
+          <p class="detalle-tarjeta">
+            {{ alojamiento.ciudad }} &bull; {{ alojamiento.tipo }} &bull; {{ alojamiento.capacidad }} huéspedes
+          </p>
+          <div class="servicios-tarjeta">
+            @for (servicio of alojamiento.servicios; track servicio) {
+              <span>{{ servicio }}</span>
+            }
+          </div>
+          <div class="fila-precio">
+            <span class="precio-tarjeta">${{ alojamiento.precioNoche | number: '1.0-0' }}/ noche</span>
+            <span class="calificacion-tarjeta">
+              <i class="fa-solid fa-star"></i> {{ alojamiento.calificacion }}
+            </span>
+          </div>
+        </article>
+      </div>
+    } @empty {
+      <div class="col-12">
+        @if (alojamientosService.cargaFallida()) {
+          <div class="alert alert-danger animate__animated animate__headShake" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>No fue posible cargar los alojamientos.
+          </div>
+        } @else if (alojamientosService.estanCargados()) {
+          <div class="estado-vacio animate__animated animate__headShake">
+            <i class="fa-solid fa-magnifying-glass icono-vacio"></i>
+            <h2>No encontramos alojamientos</h2>
+            <p>Ningún alojamiento coincide con los filtros seleccionados. Intenta con otros valores.</p>
+            <button type="button" class="btn boton-naranja px-4 py-2" (click)="limpiarFiltros()">Limpiar Filtro</button>
+          </div>
+        } @else {
+          <div class="alert alert-light border text-center" role="alert">
+            <i class="fa-solid fa-spinner fa-spin me-2"></i>Cargando alojamientos...
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

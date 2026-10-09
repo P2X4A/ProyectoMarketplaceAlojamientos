@@ -1,0 +1,103 @@
+<div class="contenedor-pagina contenedor-detalle">
+  <a routerLink="/alojamientos" class="enlace-volver mb-4">
+    <i class="fa-solid fa-caret-left"></i>Volver a alojamientos
+  </a>
+
+  @if (alojamiento(); as a) {
+    <section class="galeria animate__animated animate__fadeIn"
+             [class.galeria-una]="imagenesSecundarias(a).length === 0"
+             [class.galeria-dos]="imagenesSecundarias(a).length === 1">
+      <img [src]="a.imagenPrincipal" [alt]="a.nombre" class="imagen-galeria imagen-principal">
+      @for (imagen of imagenesSecundarias(a); track imagen) {
+        <img [src]="imagen" [alt]="a.nombre" class="imagen-galeria">
+      }
+    </section>
+
+    <div class="row g-4 mt-2">
+      <div class="col-lg-7">
+        <h1 class="titulo-detalle">{{ a.nombre }}</h1>
+        <p class="subtitulo-detalle">
+          {{ ubicacionCompleta(a) }} &bull; {{ a.tipo }} &bull; <i class="fa-solid fa-star"></i> {{ a.calificacion }}
+        </p>
+        <p class="descripcion-detalle">{{ a.descripcion }}</p>
+
+        <div class="tabla-datos">
+          <div class="dato">
+            <span class="etiqueta-dato">Capacidad</span>
+            <span class="valor-dato">{{ a.capacidad }} huéspedes</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta-dato">Habitaciones</span>
+            <span class="valor-dato">{{ a.habitaciones }}</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta-dato">Camas</span>
+            <span class="valor-dato">{{ a.camas }}</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta-dato">Baños</span>
+            <span class="valor-dato">{{ a.banos }}</span>
+          </div>
+        </div>
+
+        <h2 class="subtitulo-seccion">Servicios</h2>
+        <div class="lista-servicios">
+          @for (servicio of a.servicios; track servicio) {
+            <span class="chip-servicio">{{ servicio }}</span>
+          } @empty {
+            <p class="texto-vacio">Este alojamiento no tiene servicios registrados.</p>
+          }
+        </div>
+
+        <h2 class="subtitulo-seccion">Reglas</h2>
+        <ul class="lista-reglas">
+          @for (regla of a.reglas; track regla) {
+            <li>{{ regla }}</li>
+          } @empty {
+            <li class="texto-vacio">Este alojamiento no tiene reglas registradas.</li>
+          }
+        </ul>
+
+        <h2 class="subtitulo-seccion">Reseñas</h2>
+        @for (resena of resenas(); track resena.id) {
+          <div class="tarjeta-resena">
+            <p class="autor-resena">
+              {{ resena.usuario }}
+              <span class="color-estrella">
+                @for (estrella of estrellas(resena.calificacion); track estrella) {
+                  <i class="fa-solid fa-star"></i>
+                }
+              </span>
+            </p>
+            <p class="comentario-resena">{{ resena.comentario }}</p>
+          </div>
+        } @empty {
+          <div class="tarjeta-resena">
+            <p class="comentario-resena texto-vacio">
+              <i class="fa-regular fa-comment me-2"></i>Este alojamiento todavía no tiene reseñas.
+            </p>
+          </div>
+        }
+      </div>
+
+      <div class="col-lg-5">
+        <aside class="tarjeta-precio">
+          <p class="precio-detalle">
+            ${{ a.precioNoche | number: '1.0-0' }} <span>/ noche</span>
+          </p>
+          <p class="limpieza-detalle">Tarifa de limpieza: ${{ a.tarifaLimpieza | number: '1.0-0' }}</p>
+          <a [routerLink]="['/cotizacion', a.id]" class="btn boton-naranja w-100 boton-cotizar">Cotizar estadía</a>
+          <p class="ayuda-precio">Elige fechas y número de huéspedes en el siguiente paso</p>
+        </aside>
+      </div>
+    </div>
+  } @else if (alojamientosService.estanCargados() || alojamientosService.cargaFallida()) {
+    <div class="alert alert-warning mt-3 animate__animated animate__headShake" role="alert">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>No encontramos este alojamiento o no se encuentra disponible.
+    </div>
+  } @else {
+    <div class="alert alert-light border text-center mt-3" role="alert">
+      <i class="fa-solid fa-spinner fa-spin me-2"></i>Cargando alojamiento...
+    </div>
+  }
+</div>
