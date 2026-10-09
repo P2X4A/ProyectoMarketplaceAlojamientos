@@ -1,0 +1,100 @@
+/* Paleta y tipografía tomadas del prototipo de Figma. */
+:root {
+  --color-azul: #204e64;
+  --color-azul-claro: #668595;
+  --color-naranja: #c1502e;
+  --color-naranja-oscuro: #a8431f;
+  --color-rojo: #93381e;
+  --color-estrella: #a55f4b;
+  --color-taupe: #8a8073;
+  --color-verde: #079600;
+  --color-gris-fondo: #f6f6f6;
+  --color-gris-caja: #efefef;
+  --color-gris-boton: #e0e0e0;
+  --color-gris-texto: #808080;
+  --fuente-principal: 'Outfit', Arial, Helvetica, sans-serif;
+  --fuente-secundaria: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  color: #000000;
+  background-color: #ffffff;
+}
+
+/* Ubicación de los toast debajo de la barra de navegación. */
+.toast-top-right {
+  top: 104px;
+  right: 16px;
+}
+
+/* Contenedor general de las páginas. */
+.contenedor-pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 48px 80px 48px;
+}
+
+.titulo-pagina {
+  font-family: var(--fuente-principal);
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--color-azul);
+  margin: 0;
+}
+
+.enlace-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--color-rojo);
+  text-decoration: none;
+}
+
+.enlace-volver:hover {
+  color: var(--color-rojo);
+  text-decoration: underline;
+}
+
+.boton-naranja {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--fuente-principal);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.boton-naranja:hover,
+.boton-naranja:focus {
+  background-color: var(--color-naranja-oscuro);
+  color: #ffffff;
+}
+
+.boton-naranja:disabled {
+  background-color: var(--color-naranja);
+  color: #ffffff;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.texto-error {
+  font-size: 12px;
+  color: var(--color-rojo);
+  margin: 6px 0 0 0;
+}
+
+.color-estrella {
+  color: var(--color-estrella);
+}
+
+@media (max-width: 576px) {
+  .contenedor-pagina {
+    padding: 32px 16px 56px 16px;
+  }
+
+  .titulo-pagina {
+    font-size: 32px;
+  }
+}

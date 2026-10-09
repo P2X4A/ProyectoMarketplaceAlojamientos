@@ -1,0 +1,105 @@
+<div class="contenedor-pagina contenedor-cotizacion">
+  <a [routerLink]="['/alojamiento', id()]" class="enlace-volver">
+    <i class="fa-solid fa-caret-left"></i>Volver al alojamiento
+  </a>
+
+  <h1 class="titulo-pagina titulo-cotizacion">Cotizar tu estadía</h1>
+
+  @if (alojamiento(); as a) {
+    <div class="row g-4 g-lg-5 animate__animated animate__fadeIn">
+      <div class="col-lg-6">
+        <div class="tarjeta-alojamiento">
+          <i [class]="alojamientosService.iconoPorTipo(a.tipo) + ' icono-alojamiento'"></i>
+          <div>
+            <h2 class="nombre-alojamiento">{{ a.nombre }}</h2>
+            <p class="datos-alojamiento">{{ a.ciudad }} &bull; ${{ a.precioNoche | number: '1.0-0' }} / noche</p>
+          </div>
+        </div>
+
+        <form class="formulario-cotizacion" (ngSubmit)="reservar(a)">
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campoLlegada">Fecha de llegada</label>
+            <input type="date" id="campoLlegada" name="campoLlegada" class="form-control campo"
+                   [min]="hoy()" [(ngModel)]="fechaLlegada">
+            @if (errorLlegada()) {
+              <p class="texto-error"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ errorLlegada() }}</p>
+            }
+          </div>
+
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campoSalida">Fecha de salida</label>
+            <input type="date" id="campoSalida" name="campoSalida" class="form-control campo"
+                   [min]="minimoSalida()" [(ngModel)]="fechaSalida">
+            @if (errorSalida()) {
+              <p class="texto-error"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ errorSalida() }}</p>
+            }
+          </div>
+
+          <div class="grupo-campo">
+            <label class="etiqueta-campo" for="campoHuespedes">Número de huéspedes</label>
+            <input type="number" id="campoHuespedes" name="campoHuespedes" class="form-control campo campo-corto"
+                   min="1" step="1" [max]="a.capacidad" [(ngModel)]="huespedes">
+            @if (errorHuespedes(a)) {
+              <p class="texto-error"><i class="fa-solid fa-circle-exclamation me-1"></i>{{ errorHuespedes(a) }}</p>
+            } @else {
+              <p class="texto-error">Capacidad máxima del alojamiento: {{ a.capacidad }} huéspedes</p>
+            }
+          </div>
+        </form>
+      </div>
+
+      <div class="col-lg-6">
+        <aside class="tarjeta-resumen">
+          <h2 class="titulo-resumen">Resumen de la cotización</h2>
+
+          @if (cotizacion(a); as c) {
+            <div class="filas-resumen animate__animated animate__fadeIn">
+              <div class="fila-resumen">
+                <span>{{ c.noches }} {{ c.noches === 1 ? 'noche' : 'noches' }} x ${{ c.precioNoche | number: '1.0-0' }}</span>
+                <span>${{ c.subtotal | number: '1.0-0' }}</span>
+              </div>
+              <div class="fila-resumen">
+                <span>Tarifa de limpieza</span>
+                <span>${{ c.tarifaLimpieza | number: '1.0-0' }}</span>
+              </div>
+              <div class="fila-resumen">
+                <span>Tarifa de servicio (10%)</span>
+                <span>${{ c.tarifaServicio | number: '1.0-0' }}</span>
+              </div>
+            </div>
+            <hr class="linea-resumen">
+            <div class="fila-total">
+              <span>TOTAL</span>
+              <span>${{ c.total | number: '1.0-0' }}</span>
+            </div>
+          } @else {
+            <p class="aviso-resumen">
+              <i class="fa-regular fa-calendar me-2"></i>Selecciona fechas válidas y el número de huéspedes para
+              ver el valor de tu estadía.
+            </p>
+            <hr class="linea-resumen">
+            <div class="fila-total">
+              <span>TOTAL</span>
+              <span>$0</span>
+            </div>
+          }
+
+          <div class="text-center">
+            <button type="button" class="btn boton-naranja boton-reservar" [class.boton-inactivo]="cotizacion(a) === null"
+                    (click)="reservar(a)">
+              Reservar
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  } @else if (alojamientosService.estanCargados() || alojamientosService.cargaFallida()) {
+    <div class="alert alert-warning mt-3 animate__animated animate__headShake" role="alert">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>No encontramos este alojamiento o no se encuentra disponible.
+    </div>
+  } @else {
+    <div class="alert alert-light border text-center mt-3" role="alert">
+      <i class="fa-solid fa-spinner fa-spin me-2"></i>Cargando alojamiento...
+    </div>
+  }
+</div>

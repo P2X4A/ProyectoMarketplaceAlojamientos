@@ -1,0 +1,47 @@
+<section class="banner-principal">
+  <img src="assets/images/banner.jpg" alt="Edificios de la ciudad" class="imagen-banner">
+  <div class="capa-banner"></div>
+  <div class="texto-banner animate__animated animate__fadeIn">
+    <h1>Encuentra tu próxima estadía</h1>
+    <p>
+      Explora alojamientos temporales seleccionados por Inversiones LR en las ciudades más buscadas de
+      Colombia, desde lofts urbanos hasta cabañas junto al agua.
+    </p>
+    <a routerLink="/alojamientos" class="boton-banner">Buscar alojamientos</a>
+  </div>
+</section>
+
+<section class="seccion-destacados">
+  <h2 class="titulo-seccion">Alojamientos favoritos entre los huéspedes</h2>
+
+  <div class="row g-4 rejilla-destacados">
+    @for (alojamiento of destacados(); track alojamiento.id) {
+      <div class="col-12 col-sm-6 col-lg-4">
+        <article class="tarjeta-alojamiento animate__animated animate__fadeInUp"
+                 [routerLink]="['/alojamiento', alojamiento.id]">
+          <img [src]="alojamiento.imagenPrincipal" [alt]="alojamiento.nombre" class="imagen-tarjeta">
+          <h3 class="nombre-tarjeta">{{ alojamiento.nombre }}</h3>
+          <p class="detalle-tarjeta">{{ alojamiento.ciudad }} &bull; {{ alojamiento.tipo }}</p>
+          <div class="fila-precio">
+            <span class="precio-tarjeta">${{ alojamiento.precioNoche | number: '1.0-0' }}/ noche</span>
+            <span class="calificacion-tarjeta">
+              <i class="fa-solid fa-star"></i> {{ alojamiento.calificacion }}
+            </span>
+          </div>
+        </article>
+      </div>
+    } @empty {
+      <div class="col-12">
+        @if (alojamientosService.cargaFallida()) {
+          <div class="alert alert-danger animate__animated animate__headShake" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>No fue posible cargar los alojamientos destacados.
+          </div>
+        } @else {
+          <div class="alert alert-light border text-center" role="alert">
+            <i class="fa-solid fa-spinner fa-spin me-2"></i>Cargando alojamientos...
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
