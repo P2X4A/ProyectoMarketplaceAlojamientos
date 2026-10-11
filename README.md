@@ -28,7 +28,7 @@ Course project for **Desarrollo de Sistemas de Información 3** - Systems Engine
 
 | Requirement | Version | How to check |
 | --- | --- | --- |
-| Node.js | 20 or higher (tested with Node.js 24) | `node -v` |
+| Node.js | 24 LTS or minimum 22.22.3 | `node -v` |
 | npm | 10 or higher | `npm -v` |
 | Angular CLI | 22 | `npx ng version` |
 | Internet connection | Required | Bootstrap, Font Awesome, Animate.css and fonts load from CDN |
@@ -61,7 +61,7 @@ npm -v
 npx ng version
 ```
 
-Expected: Node.js 20+, npm 10+, Angular CLI 22. If any command fails, install or update that tool before continuing.
+Expected: Node.js 24 LTS (minimum 22.22.3), npm 10+, Angular CLI 22. If any command fails, install or update that tool before continuing.
 
 ### 4. Install dependencies
 
@@ -107,12 +107,6 @@ To build the production version:
 
 ```bash
 npm run build
-```
-
-To run the unit tests:
-
-```bash
-npm test
 ```
 
 Troubleshooting:
@@ -215,7 +209,8 @@ The reference dataset used by the application is shown below in plain text:
       "imagenPrincipal": "assets/images/loft-bogota.jpg",
       "imagenes": [
         "assets/images/loft-bogota.jpg",
-        "assets/images/loft-bogota-2.jpg"
+        "assets/images/loft-bogota2.jpg",
+        "assets/images/loft-bogota3.jpg"
       ],
       "servicios": [
         "Wi-Fi",
@@ -378,6 +373,123 @@ The reference dataset used by the application is shown below in plain text:
       "reglas": [
         "No fiestas"
       ]
+    },
+    {
+      "id": 7,
+      "nombre": "Apartaestudio en Bogotá",
+      "descripcion": "Apartaestudio práctico y luminoso, ideal para viajes de trabajo o estancias cortas en la ciudad.",
+      "ciudad": "Bogotá",
+      "ubicacion": "Usaquén, Bogotá",
+      "tipo": "Apartaestudio",
+      "capacidad": 2,
+      "habitaciones": 1,
+      "camas": 1,
+      "banos": 1,
+      "precioNoche": 120000,
+      "tarifaLimpieza": 35000,
+      "calificacion": 4.2,
+      "activo": true,
+      "imagenPrincipal": "assets/images/apartaestudio-bogota.jpg",
+      "imagenes": [
+        "assets/images/apartaestudio-bogota.jpg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Televisión"
+      ],
+      "reglas": [
+        "No fumar",
+        "No mascotas"
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Apartamento Duplex en Cali",
+      "descripcion": "Apartamento dúplex de doble altura, cercano a la zona gastronómica y comercial de Granada.",
+      "ciudad": "Cali",
+      "ubicacion": "Granada, Cali",
+      "tipo": "Apartamento Duplex",
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 2,
+      "banos": 2,
+      "precioNoche": 220000,
+      "tarifaLimpieza": 50000,
+      "calificacion": 4.8,
+      "activo": true,
+      "imagenPrincipal": "assets/images/duplex-cali.jpg",
+      "imagenes": [
+        "assets/images/duplex-cali.jpg"
+      ],
+      "servicios": [
+        "Televisión",
+        "Parqueadero",
+        "Wi-Fi",
+        "Cocina"
+      ],
+      "reglas": [
+        "No fumar",
+        "No se permiten fiestas"
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Casa en Chía",
+      "descripcion": "Casa moderna con jardín y piscina, ubicada a pocos minutos de Bogotá.",
+      "ciudad": "Chía",
+      "ubicacion": "Vereda Fusca, Chía",
+      "tipo": "Casa",
+      "capacidad": 6,
+      "habitaciones": 3,
+      "camas": 4,
+      "banos": 3,
+      "precioNoche": 380000,
+      "tarifaLimpieza": 80000,
+      "calificacion": 4.5,
+      "activo": true,
+      "imagenPrincipal": "assets/images/casa-chia.jpg",
+      "imagenes": [
+        "assets/images/casa-chia.jpg"
+      ],
+      "servicios": [
+        "Piscina",
+        "Wi-Fi",
+        "Parqueadero",
+        "BBQ"
+      ],
+      "reglas": [
+        "No fiestas",
+        "Silencio después de las 10 PM"
+      ]
+    },
+    {
+      "id": 10,
+      "nombre": "Apartamento en Cajicá",
+      "descripcion": "Apartamento acogedor con vista a las montañas, cerca del parque principal de Cajicá.",
+      "ciudad": "Cajicá",
+      "ubicacion": "Centro, Cajicá",
+      "tipo": "Apartamento",
+      "capacidad": 4,
+      "habitaciones": 2,
+      "camas": 3,
+      "banos": 2,
+      "precioNoche": 200000,
+      "tarifaLimpieza": 45000,
+      "calificacion": 4.2,
+      "activo": true,
+      "imagenPrincipal": "assets/images/apartamento-cajica.jpeg",
+      "imagenes": [
+        "assets/images/apartamento-cajica.jpeg"
+      ],
+      "servicios": [
+        "Wi-Fi",
+        "Cocina",
+        "Parqueadero"
+      ],
+      "reglas": [
+        "No fumar"
+      ]
     }
   ],
   "resenas": [
@@ -415,6 +527,27 @@ The reference dataset used by the application is shown below in plain text:
       "usuario": "Natalia Pérez",
       "calificacion": 4,
       "comentario": "La casa es amplia y está muy bien ubicada."
+    },
+    {
+      "id": 6,
+      "alojamientoId": 5,
+      "usuario": "Sofía Martínez",
+      "calificacion": 5,
+      "comentario": "Muy bien ubicado y con todo lo necesario para trabajar."
+    },
+    {
+      "id": 7,
+      "alojamientoId": 8,
+      "usuario": "Daniel Castro",
+      "calificacion": 5,
+      "comentario": "El apartamento es amplio y muy bonito."
+    },
+    {
+      "id": 8,
+      "alojamientoId": 9,
+      "usuario": "Valentina Rojas",
+      "calificacion": 4,
+      "comentario": "La piscina y el jardín son lo mejor de la casa."
     }
   ]
 }
