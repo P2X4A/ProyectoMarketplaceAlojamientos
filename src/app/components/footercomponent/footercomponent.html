@@ -1,0 +1,52 @@
+<footer class="contenedor-pie">
+  <div class="contenido-pie">
+    <div class="row g-4">
+
+      <div class="col-12 col-md-5 d-flex flex-column justify-content-between">
+        <span class="marca-pie">ALOJAMIENTOS LR</span>
+        <div class="redes-pie">
+          <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h3 class="titulo-pie">Navegación</h3>
+        <ul class="lista-pie">
+          <li><a routerLink="/principal">Inicio</a></li>
+          <li><a routerLink="/alojamientos">Alojamientos</a></li>
+          <li><a routerLink="/mis-reservas">Mis Reservas</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <h3 class="titulo-pie">Integrantes</h3>
+        <ul class="lista-pie">
+          @for (integrante of integrantes; track integrante) {
+            <li>{{ integrante }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-2">
+        <h3 class="titulo-pie">Proyecto</h3>
+        <ul class="lista-pie">
+          <li>Inversiones LR</li>
+          <li>Desarrollo de Sistemas de Información 3</li>
+          <li>Universidad El Bosque</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.cabecera-navbar {
+  position: relative;
+  top: 0;
+  z-index: 1030;
+}
+
+.barra-navegacion {
+  background-color: var(--color-azul);
+  min-height: 96px;
+  padding: 0;
+}
+
+.contenedor-barra {
+  padding: 0 96px 0 32px;
+}
+
+.marca-logo {
+  font-family: var(--fuente-principal);
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.marca-logo:hover {
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.lista-menu {
+  gap: 28px;
+}
+
+.enlace-menu {
+  font-family: var(--fuente-principal);
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff !important;
+  padding: 4px 6px !important;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.enlace-menu:hover {
+  opacity: 0.8;
+}
+
+.enlace-menu.activo {
+  border-bottom-color: rgba(255, 255, 255, 0.75);
+}
+
+.boton-menu {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .barra-navegacion {
+    min-height: 72px;
+  }
+
+  .contenedor-barra {
+    padding: 12px 16px;
+  }
+
+  .lista-menu {
+    gap: 4px;
+    padding: 12px 0 8px 0;
+  }
+
+  .enlace-menu {
+    display: inline-block;
+  }
+}
